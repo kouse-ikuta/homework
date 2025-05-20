@@ -1,0 +1,27 @@
+name: Run HelloWorld.java
+
+on:
+  push:
+    paths:
+      - 'HelloWorld.java'
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'  # または 21など
+
+      - name: Compile HelloWorld.java
+        run: javac HelloWorld.java
+
+      - name: Run HelloWorld.class
+        run: java HelloWorld
